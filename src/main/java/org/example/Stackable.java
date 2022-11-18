@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Optional;
+
 public interface Stackable {
 
     boolean isFull();
@@ -7,5 +9,7 @@ public interface Stackable {
     boolean addElement(int el);
     int getElement();
     int lookTop();
+
+    Optional <Integer> lookTopOptional();
 
 }

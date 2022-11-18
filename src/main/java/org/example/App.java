@@ -9,9 +9,13 @@ public class App
 
         System.out.println(stack.isEmpty());
 
+        System.out.println(stack.lookTopOptional());
+
         stack.addElement(1);
         stack.addElement(5);
         stack.addElement(7);
+
+        System.out.println(stack.lookTopOptional());
 
         System.out.println(stack.getElement());
         System.out.println(stack.lookTop());
@@ -30,6 +34,8 @@ public class App
 
         System.out.println(stack.isEmpty());
         System.out.println(stack.lookTop());
+
+
 
     }
 }

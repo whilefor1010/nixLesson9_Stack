@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Optional;
+
 public class Stack implements Stackable {
 
     private int[] arr;
@@ -21,11 +23,12 @@ public class Stack implements Stackable {
     }
 
     @Override
-    public boolean addElement(int el) {
+    public boolean addElement(int el) throws StackOverflowExcp{
 
-        if (curIndex == arr.length-1){
-            System.out.println("Stack overflow");
-            return false;
+        if (isFull()){
+            //System.out.println("Stack overflow");
+            //return false;
+            throw new StackOverflowExcp();
         }
 
         curIndex++;
@@ -37,10 +40,11 @@ public class Stack implements Stackable {
     }
 
     @Override
-    public int getElement() {
-        if (curIndex < 0){
-            System.out.println("Stack is empty");
-            return 0;
+    public int getElement() throws StackEmptyExcp{
+        if (isEmpty()){
+            //System.out.println("Stack is empty");
+            //return 0;
+            throw new StackEmptyExcp();
         }
 
         return arr[curIndex--];
@@ -49,12 +53,25 @@ public class Stack implements Stackable {
 
     @Override
     public int lookTop() {
-        if (curIndex < 0){
-            System.out.println("Stack is empty");
-            return 0;
+        if (isEmpty()){
+            //System.out.println("Stack is empty");
+            //return 0;
+            throw new StackEmptyExcp();
         }
 
         return arr[curIndex];
 
     }
+
+    @Override
+    public Optional<Integer> lookTopOptional(){
+
+        if (isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(arr[curIndex]);
+
+    }
+
 }

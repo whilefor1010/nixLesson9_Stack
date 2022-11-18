@@ -1,19 +1,16 @@
 package org.example;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+
     @Test
     public void shouldLookTop()
     {
@@ -28,5 +25,53 @@ public class AppTest
         assertEquals(5,stack.lookTop());
 
 
+
     }
+
+    @Test
+    public void shouldStackOverflowExcp() {
+
+        Stack stack = new Stack(1);
+        stack.addElement(1);
+
+        try {
+            stack.addElement(5);
+            fail("ooops excp doesn't work");
+        }catch(Exception e){
+            if (!(e instanceof StackOverflowExcp)){
+                System.out.println("its work but no good");
+            }
+        }
+
+    }
+
+    @Test
+    public void shouldStackEmptyExcp() {
+
+        Stack stack = new Stack(10);
+
+
+        try {
+            stack.lookTop();
+            fail("ooops excp doesn't work");
+        }catch(Exception e){
+            if (!(e instanceof StackEmptyExcp)){
+                System.out.println("its work but no good");
+            }
+        }
+
+    }
+
+    @Test
+    public void shouldOptionalEmpty() {
+
+        Stack stack = new Stack(10);
+
+        Optional<Integer> t = stack.lookTopOptional();
+
+        assertEquals(Optional.empty(), t);
+
+    }
+
+
 }
